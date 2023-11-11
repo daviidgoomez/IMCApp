@@ -162,17 +162,50 @@
                 android:text="@string/weight"
                 android:textAllCaps="true"
                 android:textColor="@color/title_text"
-                android:textSize="17sp"></TextView>
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp">
+
+            </TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="60kg"
+                android:text="60"
                 android:textSize="38sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:layout_marginBottom="30dp"
                 ></TextView>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnSubtractWeightAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_add"
+                    app:backgroundTint="@color/bg_fab"
+                    app:tint="@color/white"
+                    >
+
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnSubtractWeightRemove"
+                    android:src="@drawable/ic_remove"
+                    android:backgroundTint="@color/bg_fab"
+                    android:tint="@color/white"
+                    >
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -195,24 +228,56 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="75dp"
-                android:src="@drawable/ic_male"
-                app:tint="@color/white">
-
-            </ImageView>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/male"
+                android:text="@string/age"
                 android:textAllCaps="true"
                 android:textColor="@color/title_text"
                 android:textSize="17sp"
                 android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+
+                >
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnSubtractAgeAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_add"
+                    app:backgroundTint="@color/bg_fab"
+                    app:tint="@color/white"
+                    >
+
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnSubtractAgeRemove"
+                    android:src="@drawable/ic_remove"
+                    android:backgroundTint="@color/bg_fab"
+                    android:tint="@color/white"
+                    >
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
