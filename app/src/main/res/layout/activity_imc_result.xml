@@ -9,116 +9,93 @@
     android:paddingVertical="32dp"
     tools:context=".ImcResultActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toTopOf="@id/viewResult">
-
-    </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/viewResult"
-        android:layout_width="324dp"
-        android:layout_height="387dp"
-        app:cardBackgroundColor="@color/bg_comp"
-        app:cardCornerRadius="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="130dp"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/weightResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="260dp"
-                android:text="@string/Sobrepeso"
-                android:textColor="@color/bg_sobrepeso"
-                android:textSize="30sp"
-                android:textStyle="bold"></TextView>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/weightCalcResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="27.46"
-                android:textColor="#F6F6F6"
-                android:textSize="50dp"
-                android:layout_marginBottom="49dp"
-                android:textStyle="bold"
-
-                >
-            </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/TextSobrepeso"
-                android:textStyle="bold"
-                android:textColor="@color/title_text"
-                android:textSize="20sp"
-                android:layout_margin="15dp"
-
-                >
-
-            </TextView>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-<androidx.appcompat.widget.AppCompatButton
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/bg_button"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:height="70dp"
-    android:text="RE-CALCULAR"
-    android:textStyle="bold"
-    android:textSize="20sp"
-    android:textColor="@color/white"
-    android:layout_marginBottom="20dp"
-    >
-
-
-
-
-</androidx.appcompat.widget.AppCompatButton>
 
     <TextView
+        android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TU RESULTADO"
         android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/viewResult"
-        android:layout_marginBottom="400dp"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+
         >
-
-
     </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewResult"
+        android:layout_width="348dp"
+        android:layout_height="347dp"
+        android:layout_marginBottom="100dp"
+        app:cardBackgroundColor="@color/bg_comp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Sobrepeso"
+            android:textColor="@color/bg_sobrepeso"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="50dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="27.56"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="60dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TextSobrepeso"
+            android:textColor="@color/title_text"
+            android:textSize="17sp"
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+<androidx.appcompat.widget.AppCompatButton
+   android:id="@+id/recalcButton"
+    android:layout_width="350dp"
+    android:layout_height="80dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="@id/viewResult"
+    android:layout_marginTop="400dp"
+    android:background="@color/bg_button"
+    android:text="RE-CALCULAR"
+    android:textColor="@color/white"
+    android:textSize="25dp"
+    >
+
+
+</androidx.appcompat.widget.AppCompatButton>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

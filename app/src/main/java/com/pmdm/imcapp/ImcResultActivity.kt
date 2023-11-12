@@ -10,10 +10,9 @@ class ImcResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imc_result)
-       // initComponent()
-
+        initComponent()
         initUI()
-      //  initListeners()
+       initListeners()
     }
 
     private fun initComponent() {

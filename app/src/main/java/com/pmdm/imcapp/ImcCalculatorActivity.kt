@@ -13,8 +13,8 @@ import java.text.DecimalFormat
 
 class ImcCalculatorActivity : AppCompatActivity() {
 
-   private var weight:Int = 0
-    private var age:Int = 0
+   private var weight:Int = 40
+    private var age:Int = 18
 
    private lateinit var viewMale: CardView
    private lateinit var viewFemale: CardView
