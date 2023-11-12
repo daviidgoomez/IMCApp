@@ -273,7 +273,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/calcButton"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:background="@color/bg_button"
         android:fontFamily="serif-monospace"
         android:text="@string/calc"
@@ -283,7 +283,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="30dp"
         >
 
 

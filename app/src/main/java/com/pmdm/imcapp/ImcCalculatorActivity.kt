@@ -96,7 +96,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
 
         btnSubtractAgeRemove.setOnClickListener{
             age -=1
-            setWeight()
+            setAge()
         }
         calcButton.setOnClickListener {
             val imcResult = calculateIMC()
