@@ -13,20 +13,23 @@ import java.text.DecimalFormat
 
 class ImcCalculatorActivity : AppCompatActivity() {
 
-   private var weight:Int = 40
-    private var age:Int = 18
 
-   private lateinit var viewMale: CardView
-   private lateinit var viewFemale: CardView
-   private lateinit var tvHeight: TextView
-   private lateinit var rsHeight: Slider
-   private lateinit var textPeso: TextView
-   private lateinit var textEdad: TextView
-   private lateinit var btnSubtractWeightAdd: FloatingActionButton
-   private lateinit var btnSubtractWeightRemove: FloatingActionButton
-   private lateinit var btnSubtractAgeAdd: FloatingActionButton
-   private lateinit var btnSubtractAgeRemove: FloatingActionButton
-   private lateinit var calcButton: AppCompatButton
+    private var isMaleSelected: Boolean = true
+    private var isFemaleSelected: Boolean = false
+    private var weight: Int = 40
+    private var age: Int = 18
+
+    private lateinit var viewMale: CardView
+    private lateinit var viewFemale: CardView
+    private lateinit var tvHeight: TextView
+    private lateinit var rsHeight: Slider
+    private lateinit var textPeso: TextView
+    private lateinit var textEdad: TextView
+    private lateinit var btnSubtractWeightAdd: FloatingActionButton
+    private lateinit var btnSubtractWeightRemove: FloatingActionButton
+    private lateinit var btnSubtractAgeAdd: FloatingActionButton
+    private lateinit var btnSubtractAgeRemove: FloatingActionButton
+    private lateinit var calcButton: AppCompatButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,19 +40,24 @@ class ImcCalculatorActivity : AppCompatActivity() {
 
     }
 
-    private fun setCardBackgroundColor(isComponentSelected:Boolean): Int {
-        val colorReference = if(isComponentSelected) {
+    private fun setCardBackgroundColor(isComponentSelected: Boolean): Int {
+        val colorReference = if (isComponentSelected) {
             R.color.bg_comp_sel //true
         } else {
             R.color.bg_comp //false
         }
-        return ContextCompat.getColor(this,colorReference)
+        return ContextCompat.getColor(this, colorReference)
     }
+
     private fun setGenderColor() {
-       val isMaleSelected:Boolean = true
 
         viewMale.setCardBackgroundColor(setCardBackgroundColor(isMaleSelected)) //true
         viewFemale.setCardBackgroundColor(setCardBackgroundColor(!isMaleSelected)) //false
+    }
+
+    private fun color() {
+        isMaleSelected = !isMaleSelected;
+        isFemaleSelected = !isFemaleSelected
     }
 
     private fun initUI() {
@@ -73,61 +81,78 @@ class ImcCalculatorActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        viewMale.setOnClickListener { setGenderColor() }
-        viewFemale.setOnClickListener { setGenderColor() }
-        rsHeight.addOnChangeListener{_,value,_ ->
+        viewMale.setOnClickListener {
+            color()
+            setGenderColor()
+        }
+        viewFemale.setOnClickListener {
+            color()
+            setGenderColor()
+        }
+        rsHeight.addOnChangeListener { _, value, _ ->
             //tvHeight.text = value.toString()
             tvHeight.text = DecimalFormat("#.##").format(value) + "cm"
         }
         btnSubtractWeightAdd.setOnClickListener {
-            weight +=1
+            weight += 1
             setWeight()
         }
 
-        btnSubtractAgeAdd.setOnClickListener{
-            age +=1
+        btnSubtractAgeAdd.setOnClickListener {
+            age += 1
             setAge()
         }
 
-        btnSubtractWeightRemove.setOnClickListener{
-            weight -=1
+        btnSubtractWeightRemove.setOnClickListener {
+            weight -= 1
             setWeight()
         }
 
-        btnSubtractAgeRemove.setOnClickListener{
-            age -=1
+        btnSubtractAgeRemove.setOnClickListener {
+            age -= 1
             setAge()
         }
         calcButton.setOnClickListener {
             val imcResult = calculateIMC()
-            navigate2result(imcResult)
+          //  navigate2result(titulo, desc, res)
         }
     }
 
+    private fun navigate2result(titulo:String ,desc:String,res:Double) {
+        val intent = Intent (this,ImcResultActivity::class.java)
+        intent.putExtra("titulo",titulo)
+        intent.putExtra("desc",desc)
+        intent.putExtra("res",res)
+        startActivity(intent)
+    }
+
+
     private fun setWeight() {
-    textPeso.text = weight.toString()
+        textPeso.text = weight.toString()
     }
 
     private fun setAge() {
         textEdad.text = age.toString()
     }
 
-    private fun calculateIMC() :Double  {
-       //Me aseguro de que tvHeight.text es un valor Double
-        val height = tvHeight.text.toString().toDoubleOrNull() ?: 0.0
+    private fun calculateIMC() {
 
-        //Evita la división por cero
-        if(height == 0.0) {
-            //Maneja el caso en el que la altura puede ser 0
-            return 0.0
-        }
-        return (weight/height) * (weight/height)
+        var peso: Double = tvHeight.toString().toDouble();
+        var altura: Double = tvHeight.toString().toDouble();
+        altura = (altura / 100)
+        altura = altura * altura
+        var res: Double = peso / (altura);
+
+        var desc: String
+        var titulo: String
+
+
+
+
+       // navigate2result(titulo,desc,res)
+
+
     }
 
-    private fun navigate2result(result: Double) {
-        val intent = Intent(this, ImcResultActivity::class.java)
-        intent.putExtra("result", result)
-        startActivity(intent)
-    }
 
 }

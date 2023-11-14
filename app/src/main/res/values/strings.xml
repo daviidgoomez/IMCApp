@@ -9,9 +9,12 @@
     <string name="Sobrepeso">Sobrepeso</string>
     <string name="PesoNormal">En tu peso</string>
     <string name="Infrapeso">Por debajo de tu peso</string>
+    <string name="Obesidad">Obesidad</string>
     <string name="TextSobrepeso">Estás por encima de tu peso óptimo</string>
     <string name="TextNormal">Estás en tu peso óptimo</string>
     <string name="TextInfrapeso">Por debajo de tu peso óptimo</string>
+    <string name="TextObesidad">Tienes un problema de obesidad</string>
+
 
 
 
