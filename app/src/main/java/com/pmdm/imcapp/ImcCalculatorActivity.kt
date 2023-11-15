@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -14,10 +15,13 @@ import java.text.DecimalFormat
 class ImcCalculatorActivity : AppCompatActivity() {
 
 
+
+
     private var isMaleSelected: Boolean = true
     private var isFemaleSelected: Boolean = false
     private var weight: Int = 40
     private var age: Int = 18
+
 
     private lateinit var viewMale: CardView
     private lateinit var viewFemale: CardView
@@ -39,7 +43,19 @@ class ImcCalculatorActivity : AppCompatActivity() {
         initUI()
 
     }
-
+    private fun initComponents() {
+        viewMale = findViewById(R.id.viewMale)
+        viewFemale = findViewById(R.id.viewFemale)
+        tvHeight = findViewById(R.id.tvHeight)
+        rsHeight = findViewById(R.id.rsHeight)
+        textPeso = findViewById(R.id.textPeso)
+        textEdad = findViewById(R.id.textEdad)
+        btnSubtractWeightAdd = findViewById(R.id.btnSubtractWeightAdd)
+        btnSubtractWeightRemove = findViewById(R.id.btnSubtractWeightRemove)
+        btnSubtractAgeAdd = findViewById(R.id.btnSubtractAgeAdd)
+        btnSubtractAgeRemove = findViewById(R.id.btnAgeRemove)
+        calcButton = findViewById(R.id.calcButton)
+    }
     private fun setCardBackgroundColor(isComponentSelected: Boolean): Int {
         val colorReference = if (isComponentSelected) {
             R.color.bg_comp_sel //true
@@ -66,19 +82,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
         setAge()
     }
 
-    private fun initComponents() {
-        viewMale = findViewById(R.id.viewMale)
-        viewFemale = findViewById(R.id.viewFemale)
-        tvHeight = findViewById(R.id.tvHeight)
-        rsHeight = findViewById(R.id.rsHeight)
-        textPeso = findViewById(R.id.textPeso)
-        textEdad = findViewById(R.id.textEdad)
-        btnSubtractWeightAdd = findViewById(R.id.btnSubtractWeightAdd)
-        btnSubtractWeightRemove = findViewById(R.id.btnSubtractWeightRemove)
-        btnSubtractAgeAdd = findViewById(R.id.btnSubtractAgeAdd)
-        btnSubtractAgeRemove = findViewById(R.id.btnAgeRemove)
-        calcButton = findViewById(R.id.calcButton)
-    }
+
 
     private fun initListeners() {
         viewMale.setOnClickListener {
@@ -90,8 +94,12 @@ class ImcCalculatorActivity : AppCompatActivity() {
             setGenderColor()
         }
         rsHeight.addOnChangeListener { _, value, _ ->
-            //tvHeight.text = value.toString()
-            tvHeight.text = DecimalFormat("#.##").format(value) + "cm"
+//            tvHeight.text = value.toString()
+//            tvHeight.text = DecimalFormat("#.##").format(value) + "cm"
+//
+            val df=DecimalFormat("#.##")
+            val res = df.format(value)
+            tvHeight.text=res
         }
         btnSubtractWeightAdd.setOnClickListener {
             weight += 1
@@ -113,18 +121,17 @@ class ImcCalculatorActivity : AppCompatActivity() {
             setAge()
         }
         calcButton.setOnClickListener {
-            val imcResult = calculateIMC()
-          //  navigate2result(titulo, desc, res)
+             calculateIMC()
         }
     }
 
-    private fun navigate2result(titulo:String ,desc:String,res:Double) {
-        val intent = Intent (this,ImcResultActivity::class.java)
-        intent.putExtra("titulo",titulo)
-        intent.putExtra("desc",desc)
-        intent.putExtra("res",res)
-        startActivity(intent)
-    }
+    //  private fun navigate2result(titulo:String ,desc:String,res:Double) {
+    //  val intent = Intent (this,ImcResultActivity::class.java)
+    //intent.putExtra("titulo",titulo)
+    //intent.putExtra("desc",desc)
+    //intent.putExtra("res",res)
+    //startActivity(intent)
+    //}
 
 
     private fun setWeight() {
@@ -137,19 +144,50 @@ class ImcCalculatorActivity : AppCompatActivity() {
 
     private fun calculateIMC() {
 
-        var peso: Double = tvHeight.toString().toDouble();
-        var altura: Double = tvHeight.toString().toDouble();
+        var peso: Double =textPeso.text.toString().toDouble();
+        var altura= tvHeight.text.toString().toDouble()
+
+
         altura = (altura / 100)
-        altura = altura * altura
+        altura *= altura
         var res: Double = peso / (altura);
 
-        var desc: String
-        var titulo: String
+        var desc: String = ""
+        var titulo: String = ""
+
+         when (res) {
+            in 0.0..18.5 -> {
+                desc =R.string.Obesidad.toString()
+                titulo = R.string.Obesidad.toString()
+            }
+
+            in 18.6..24.9 -> {
+                desc = R.string.Obesidad.toString()
+                titulo = R.string.Obesidad.toString()
+            }
+
+            in 25.00..29.9 -> {
+                desc = R.string.Obesidad.toString()
+                titulo = R.string.Obesidad.toString()
+            }
+
+            in 30.00..Double.MAX_VALUE -> {
+                desc = R.string.Obesidad.toString()
+                titulo = R.string.Obesidad.toString()
+            }
+
+            else -> {}
+        }
+
+        val df=DecimalFormat("#.##")
+        val result = df.format(res)
 
 
-
-
-       // navigate2result(titulo,desc,res)
+        val intentGA = Intent(this, ImcResultActivity::class.java)
+        intentGA.putExtra("Título", titulo)
+        intentGA.putExtra("Descripción", desc)
+        intentGA.putExtra("Resultado", result)
+        startActivity(intentGA)
 
 
     }
