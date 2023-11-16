@@ -13,6 +13,7 @@ private lateinit var recalcButton: AppCompatButton
 private lateinit var tituloPeso: TextView
 private lateinit var resultadoPeso:TextView
 private lateinit var descripcionPeso: TextView
+//private lateinit var colorTitulo: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_imc_result)
@@ -26,6 +27,7 @@ private lateinit var descripcionPeso: TextView
         tituloPeso = findViewById(R.id.tituloPeso)
         resultadoPeso = findViewById(R.id.resultadoPeso)
         descripcionPeso = findViewById(R.id.descripcionPeso)
+     //   colorTitulo = findViewById(R.id.tituloPeso)
     }
 
     private fun initUI() {
@@ -36,6 +38,9 @@ private lateinit var descripcionPeso: TextView
         val desc =
             intent.extras?.getString("Descripción").orEmpty()
         descripcionPeso.text = desc
+      //  val color =
+         //   intent.extras?.getString("Color").orEmpty()
+     //   colorTitulo.text = color
 
     }
 

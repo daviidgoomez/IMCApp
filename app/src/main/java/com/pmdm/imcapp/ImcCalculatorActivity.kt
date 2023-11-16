@@ -1,5 +1,6 @@
 package com.pmdm.imcapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,8 +14,6 @@ import com.google.android.material.slider.Slider
 import java.text.DecimalFormat
 
 class ImcCalculatorActivity : AppCompatActivity() {
-
-
 
 
     private var isMaleSelected: Boolean = true
@@ -43,6 +42,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
         initUI()
 
     }
+
     private fun initComponents() {
         viewMale = findViewById(R.id.viewMale)
         viewFemale = findViewById(R.id.viewFemale)
@@ -56,6 +56,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
         btnSubtractAgeRemove = findViewById(R.id.btnAgeRemove)
         calcButton = findViewById(R.id.calcButton)
     }
+
     private fun setCardBackgroundColor(isComponentSelected: Boolean): Int {
         val colorReference = if (isComponentSelected) {
             R.color.bg_comp_sel //true
@@ -83,7 +84,6 @@ class ImcCalculatorActivity : AppCompatActivity() {
     }
 
 
-
     private fun initListeners() {
         viewMale.setOnClickListener {
             color()
@@ -97,9 +97,9 @@ class ImcCalculatorActivity : AppCompatActivity() {
 //            tvHeight.text = value.toString()
 //            tvHeight.text = DecimalFormat("#.##").format(value) + "cm"
 //
-            val df=DecimalFormat("#.##")
+            val df = DecimalFormat("#.##")
             val res = df.format(value)
-            tvHeight.text=res
+            tvHeight.text = res
         }
         btnSubtractWeightAdd.setOnClickListener {
             weight += 1
@@ -121,7 +121,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
             setAge()
         }
         calcButton.setOnClickListener {
-             calculateIMC()
+            calculateIMC()
         }
     }
 
@@ -142,55 +142,57 @@ class ImcCalculatorActivity : AppCompatActivity() {
         textEdad.text = age.toString()
     }
 
+    @SuppressLint("ResourceType")
     private fun calculateIMC() {
-
-        var peso: Double =textPeso.text.toString().toDouble();
-        var altura= tvHeight.text.toString().toDouble()
-
+        var peso: Double = textPeso.text.toString().toDouble()
+        var altura = tvHeight.text.toString().toDouble()
 
         altura = (altura / 100)
         altura *= altura
-        var res: Double = peso / (altura);
+        var res: Double = peso / (altura)
 
         var desc: String = ""
         var titulo: String = ""
+     //   var color:String = ""
 
-         when (res) {
+        when (res) {
             in 0.0..18.5 -> {
-                desc =R.string.Obesidad.toString()
-                titulo = R.string.Obesidad.toString()
+                desc = getString(R.string.TextInfrapeso)
+                titulo = getString(R.string.Infrapeso)
+               // color = getString(R.color.bg_infrapeso)
             }
 
             in 18.6..24.9 -> {
-                desc = R.string.Obesidad.toString()
-                titulo = R.string.Obesidad.toString()
+                desc = getString(R.string.TextNormal)
+                titulo = getString(R.string.PesoNormal)
+               // color = getString(R.color.bg_normal)
             }
 
             in 25.00..29.9 -> {
-                desc = R.string.Obesidad.toString()
-                titulo = R.string.Obesidad.toString()
+                desc = getString(R.string.TextSobrepeso)
+                titulo = getString(R.string.Sobrepeso)
+             //   color = getString(R.color.bg_sobrepeso)
             }
 
             in 30.00..Double.MAX_VALUE -> {
-                desc = R.string.Obesidad.toString()
-                titulo = R.string.Obesidad.toString()
+                desc = getString(R.string.TextObesidad)
+                titulo = getString(R.string.Obesidad)
+              //  color = getString(R.color.bg_sobrepeso) //Sobrepeso y color utilizan el mismo color
             }
 
-            else -> {}
+            else -> {
+            }
         }
 
-        val df=DecimalFormat("#.##")
+        val df = DecimalFormat("#.##")
         val result = df.format(res)
-
 
         val intentGA = Intent(this, ImcResultActivity::class.java)
         intentGA.putExtra("Título", titulo)
         intentGA.putExtra("Descripción", desc)
         intentGA.putExtra("Resultado", result)
+        //intentGA.putExtra("Color" , color)
         startActivity(intentGA)
-
-
     }
-
-
 }
+
